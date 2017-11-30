@@ -23,23 +23,20 @@ public class MainManager {
         this.networkApi = networkApi;
     }
 
-    public void getWeatherData(String city,final WeatherCallback weatherCallback){
-        Call<List<WeatherResponse>> call = networkApi.getWeather(NetworkApi.appID,city);
-        call.enqueue(new Callback<List<WeatherResponse>>() {
+    public void getWeatherData(String city,final WeatherCallback weatherCallback) {
+        Call<WeatherResponse> call = networkApi.getWeather(NetworkApi.appID, city);
+        call.enqueue(new Callback<WeatherResponse>() {
             @Override
-            public void onResponse(Call<List<WeatherResponse>> call, Response<List<WeatherResponse>> response) {
+            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                 weatherCallback.onSuccess(response.body());
-                Log.d("getWeatherData","Success");
+                Log.d("getWeatherData", "Success");
             }
 
             @Override
-            public void onFailure(Call<List<WeatherResponse>> call, Throwable t) {
+            public void onFailure(Call<WeatherResponse> call, Throwable t) {
                 weatherCallback.onFailure(t);
-                Log.d("getWeatherData","Failure");
+                Log.d("getWeatherData", "Failure");
             }
         });
-
     }
-
-
 }

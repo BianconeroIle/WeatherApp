@@ -44,7 +44,7 @@ public class MainPresenter {
     public void getWeatherDataByCity(final String city){
         mainManager.getWeatherData(city, new WeatherCallback() {
             @Override
-            public void onSuccess(List<WeatherResponse> weatherResponses) {
+            public void onSuccess(WeatherResponse weatherResponses) {
                 MainView view = weakReferenceMainView.get();
                 if(view != null){
                     view.showWeatherData(weatherResponses,city);

@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     TextView condition;
 
     MainPresenter mainPresenter;
-    WeatherResponse weatherResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +41,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         mainPresenter = new MainPresenter(this);
+
     }
 
-    @Override
-    public void showWeatherData(List<WeatherResponse> weatherResponse, String city) {
-        initData();
-    }
-
-    @Override
-    public void setCityError() {
-        edt_cityName.setError(getString(R.string.hint_enter_city_name));
-    }
-
-    public void initData(){
+    public void initData(WeatherResponse weatherResponse){
         if(weatherResponse != null) {
             cityName.setText(weatherResponse.getCityName());
             temp.setText(weatherResponse.getMainDTO().getTemp() + " \u2103");
@@ -63,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
             icon.setImageResource(getResources().getIdentifier(
                     "a_" + weather.getIcon(), "drawable", getPackageName()));
         }
+    }
+    @Override
+    public void showWeatherData(WeatherResponse weatherResponse, String city) {
+        initData(weatherResponse);
+    }
+
+    @Override
+    public void setCityError() {
+        edt_cityName.setError(getString(R.string.hint_enter_city_name));
     }
 
     @OnClick(R.id.btn_enter)

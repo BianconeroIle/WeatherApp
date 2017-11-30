@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface MainView {
-    void showWeatherData(List<WeatherResponse> weatherResponse,String city);
+    void showWeatherData(WeatherResponse weatherResponse,String city);
     void setCityError();
     void errorGettingWeatherData();
 }

@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface WeatherCallback {
-    void onSuccess(List<WeatherResponse> weatherResponses);
+    void onSuccess(WeatherResponse weatherResponses);
     void onFailure(Throwable t);
 }
