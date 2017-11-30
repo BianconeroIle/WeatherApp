@@ -16,8 +16,8 @@ import retrofit2.http.Query;
 public interface NetworkApi {
 
     String BASE_URL = "http://api.openweathermap.org";
-    String appID = "b1b15e88fa797225412429c1c50c122a1";
+    String APP_ID = "1c8952a3e7d2a5d7a5a322163a17a2f1";
 
     @GET("data/2.5/weather")
-    Call<WeatherResponse> getWeather(@Query("q") String city, @Path("appId") String appID);
+    Call<WeatherResponse> getWeather(@Query("q") String city, @Query("appId") String appID);
 }

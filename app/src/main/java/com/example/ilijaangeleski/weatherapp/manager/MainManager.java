@@ -6,8 +6,6 @@ import com.example.ilijaangeleski.weatherapp.api.NetworkApi;
 import com.example.ilijaangeleski.weatherapp.callback.WeatherCallback;
 import com.example.ilijaangeleski.weatherapp.model.WeatherResponse;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +22,7 @@ public class MainManager {
     }
 
     public void getWeatherData(String city,final WeatherCallback weatherCallback) {
-        Call<WeatherResponse> call = networkApi.getWeather(NetworkApi.appID, city);
+        Call<WeatherResponse> call = networkApi.getWeather(city, NetworkApi.APP_ID);
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {

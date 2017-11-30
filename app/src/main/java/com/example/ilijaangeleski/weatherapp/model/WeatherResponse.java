@@ -15,11 +15,23 @@ public class WeatherResponse implements Serializable {
     private long date;
     @SerializedName("name")
     private String cityName;
+
+    @SerializedName("visibility")
     private long visibility;
+
+    @SerializedName("clouds")
     private CloudsDTO cloudsDTO;
+
+    @SerializedName("coord")
     private CoordsDTO coordsDTO;
+
+    @SerializedName("main")
     private MainDTO mainDTO;
+
+    @SerializedName("sys")
     private SysDTO sysDTO;
+
+    @SerializedName("weather")
     private List<WeatherDTO> weatherData;
 
     public WeatherResponse(long date, String cityName, long visibility, CloudsDTO cloudsDTO, CoordsDTO coordsDTO, MainDTO mainDTO, SysDTO sysDTO, List<WeatherDTO> weatherData) {
