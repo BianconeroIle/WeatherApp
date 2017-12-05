@@ -34,13 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
 
-    @Override
-    public void sendIntent(WeatherResponse weatherResponse, String city) {
-        Intent i = new Intent(MainActivity.this,WeatherDetailsActivity.class);
-        i.putExtra("getCityName" , edt_cityName.getText().toString());
-        i.putExtra("weatherResponse",weatherResponse);
-        startActivity(i);
-    }
+
 
     @Override
     public void setCityError() {
@@ -53,10 +47,21 @@ public class MainActivity extends AppCompatActivity implements MainView {
         hideKeyboard();
 
     }
+    @Override
+    public void validateCityAndSendIntent(WeatherResponse weatherResponse, String city) {
+        sendIntent(weatherResponse);
+    }
 
     @Override
     public void errorGettingWeatherData() {
         Toast.makeText(this, "Error getting weather data from server", Toast.LENGTH_LONG).show();
+    }
+
+    public void sendIntent(WeatherResponse weatherResponse){
+        Intent i = new Intent(MainActivity.this,WeatherDetailsActivity.class);
+        i.putExtra("getCityName" , edt_cityName.getText().toString());
+        i.putExtra("weatherResponse",weatherResponse);
+        startActivity(i);
     }
 
     private void hideKeyboard() {

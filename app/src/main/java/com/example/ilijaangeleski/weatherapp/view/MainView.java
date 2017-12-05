@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface MainView {
-    void sendIntent(WeatherResponse weatherResponse, String city);
+    void validateCityAndSendIntent(WeatherResponse weatherResponse, String city);
     void setCityError();
     void errorGettingWeatherData();
 }
