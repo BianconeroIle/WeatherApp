@@ -1,22 +1,17 @@
 package com.example.ilijaangeleski.weatherapp.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ilijaangeleski.weatherapp.R;
-import com.example.ilijaangeleski.weatherapp.model.WeatherDTO;
 import com.example.ilijaangeleski.weatherapp.model.WeatherResponse;
 import com.example.ilijaangeleski.weatherapp.presenter.MainPresenter;
 import com.example.ilijaangeleski.weatherapp.view.MainView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,14 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.edt_cityName)
     EditText edt_cityName;
-    @BindView(R.id.cityName)
-    TextView cityName;
-    @BindView(R.id.icon)
-    ImageView icon;
-    @BindView(R.id.temp)
-    TextView temp;
-    @BindView(R.id.condition)
-    TextView condition;
+
 
     MainPresenter mainPresenter;
 
@@ -45,19 +33,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mainPresenter = new MainPresenter(this);
     }
 
-    public void initData(WeatherResponse weatherResponse){
-        if(weatherResponse != null) {
-            cityName.setText(weatherResponse.getCityName());
-            temp.setText(weatherResponse.getMainDTO().getTemp() + " \u2103");
-            WeatherDTO weather = weatherResponse.getWeatherData().get(0);
-            condition.setText(weather.getDescription());
-            icon.setImageResource(getResources().getIdentifier(
-                    "a_" + weather.getIcon(), "drawable", getPackageName()));
-        }
-    }
+
     @Override
-    public void showWeatherData(WeatherResponse weatherResponse, String city) {
-        initData(weatherResponse);
+    public void sendIntent(WeatherResponse weatherResponse, String city) {
+        Intent i = new Intent(MainActivity.this,WeatherDetailsActivity.class);
+        i.putExtra("getCityName" , edt_cityName.getText().toString());
+        i.putExtra("weatherResponse",weatherResponse);
+        startActivity(i);
     }
 
     @Override

@@ -7,7 +7,6 @@ import com.example.ilijaangeleski.weatherapp.model.WeatherResponse;
 import com.example.ilijaangeleski.weatherapp.view.MainView;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -47,7 +46,7 @@ public class MainPresenter {
             public void onSuccess(WeatherResponse weatherResponses) {
                 MainView view = weakReferenceMainView.get();
                 if(view != null){
-                    view.showWeatherData(weatherResponses,city);
+                    view.sendIntent(weatherResponses,city);
                 }
             }
 
