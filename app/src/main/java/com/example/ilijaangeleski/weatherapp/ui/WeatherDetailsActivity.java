@@ -36,7 +36,6 @@ public class WeatherDetailsActivity extends AppCompatActivity implements Details
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_weather_details);
         ButterKnife.bind(this);
-
     }
 
     public void initData(WeatherResponse weatherResponse) {
