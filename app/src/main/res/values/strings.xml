@@ -2,5 +2,4 @@
     <string name="app_name">WeatherApp</string>
     <string name="enter_city_name">Enter city name</string>
     <string name="hint_enter_city_name">City not found!</string>
-    <string name="error_getting_data_from_server">Error getting data from server</string>
 </resources>

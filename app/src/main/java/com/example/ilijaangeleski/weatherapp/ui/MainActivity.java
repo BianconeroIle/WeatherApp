@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.edt_cityName)
     EditText edt_cityName;
-
-
     MainPresenter mainPresenter;
+    public static final String GET_CITY = "getCityName";
+    public static final String GET_WEATHER_RESPONSE = "weatherResponse";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,37 +33,29 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mainPresenter = new MainPresenter(this);
     }
 
-
-
-
     @Override
     public void setCityError() {
         edt_cityName.setError(getString(R.string.hint_enter_city_name));
     }
 
     @OnClick(R.id.btn_enter)
-    public void onClickEnter(){
+    public void onClickEnter() {
         mainPresenter.validateCity(edt_cityName.getText().toString());
-        hideKeyboard();
-
     }
+
     @Override
-    public void validateCityAndSendIntent(WeatherResponse weatherResponse, String city) {
-        sendIntent(weatherResponse);
+    public void openDetails(WeatherResponse weatherResponse, String city) {
+        hideKeyboard();
+        Intent intent = new Intent(MainActivity.this, WeatherDetailsActivity.class);
+        intent.putExtra(GET_CITY, edt_cityName.getText().toString());
+        intent.putExtra(GET_WEATHER_RESPONSE, weatherResponse);
+        startActivity(intent);
     }
 
     @Override
     public void errorGettingWeatherData() {
         Toast.makeText(this, "Error getting weather data from server", Toast.LENGTH_LONG).show();
     }
-
-    public void sendIntent(WeatherResponse weatherResponse){
-        Intent i = new Intent(MainActivity.this,WeatherDetailsActivity.class);
-        i.putExtra("getCityName" , edt_cityName.getText().toString());
-        i.putExtra("weatherResponse",weatherResponse);
-        startActivity(i);
-    }
-
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);

@@ -46,7 +46,7 @@ public class MainPresenter {
             public void onSuccess(WeatherResponse weatherResponses) {
                 MainView view = weakReferenceMainView.get();
                 if(view != null){
-                    view.validateCityAndSendIntent(weatherResponses,city);
+                    view.openDetails(weatherResponses,city);
                 }
             }
 
